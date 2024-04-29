@@ -44,11 +44,14 @@ print(years)
 # Crea una biblioteca de objetos, Dynamic Link Library(DLL), y la retorna
 def get_c_library():
     #clibrary = ctypes.CDLL("/home/federica/Documents/Sistemas_de_Computacion/practico_2/SistDeCompTP2/ctypes/clibrary.so")
-    clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/clibrary.so")
+    #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/clibrary.so")
+    clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/libgini.so")
     return clibrary
 
 # Asigna nombre a la funcion de C utilizada
-func = get_c_library().ChangesArray
+#func = get_c_library().ChangesArray #PARTE 1
+func = get_c_library().CallAssemblyFunction 
+
 
 # Define el tipo de los argumentos y el valor de retorno de la función
 def function_in_c():
@@ -62,7 +65,7 @@ def get_values_c():
     values_c = (ctypes.c_float * len(values))(*values)
     return values_c
 
-# Llama a la función de c. new_values_c es un puntero a la memoria que fue asignada en la función ChangesArray del código de C para almacenar el nuevo array de ints.
+# Llama a la función de c. new_values_c es un puntero a la memoria que fue asignada en la función CallAssemblyFunction del código de C para almacenar el nuevo array de ints.
 def get_new_values_c():
     new_values_c = func(get_values_c(), len(values))
     return new_values_c
@@ -117,4 +120,4 @@ btn.on_clicked(on_button_clicked)
 plt.show()
 
 # Libera memoria. llama a funcion de programa en c.
-get_c_library().free_memory(get_new_values_c())
+get_c_library().free_memory(get_new_values_c()) 

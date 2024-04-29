@@ -1,4 +1,4 @@
-from MainProcess import value_get,get_country,filter_and_fill,get_values_po, button_position
+from src.MainProcess import value_get,get_country,filter_and_fill,get_values_po, button_position
 
 # Testea si se pudieron obtener los datos o si hubo algun error. 200 es si anduvo bien
 def test_value_get():
