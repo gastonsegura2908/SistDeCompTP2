@@ -4,17 +4,13 @@
 
 
 // Prototipo de la función en ensamblador
-extern int* ChangesArray(float* arr, int size);
+//extern int ChangesArray(float gini_index);
 
 // Función en C que se comunica con Python y llama a la función en ensamblador
-int* CallAssemblyFunction(float* values, int num_values) {
+int CallAssemblyFunction(float gini_index) {
     // Llamar a la función en ensamblador
-    int* new_values = ChangesArray(values, num_values);
-
-    // Devolver los resultados al archivo Python
-    return new_values;
+    
+    return (int)gini_index+1;
+    //return ChangesArray(gini_index);
 }
 
-void free_memory(int *arr){
-    free(arr);
-}

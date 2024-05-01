@@ -1,6 +1,11 @@
 import requests
 import ctypes
+import matplotlib
+#import _tkinter
+#matplotlib.use('TkAgg')
+#matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 from matplotlib.widgets import Button
 
 # URL de la api
@@ -45,7 +50,8 @@ print(years)
 def get_c_library():
     #clibrary = ctypes.CDLL("/home/federica/Documents/Sistemas_de_Computacion/practico_2/SistDeCompTP2/ctypes/clibrary.so")
     #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/clibrary.so")
-    clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/libgini.so")
+    clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/newclibrary_c.so")
+    #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/libgini.so")
     return clibrary
 
 # Asigna nombre a la funcion de C utilizada
@@ -55,28 +61,49 @@ func = get_c_library().CallAssemblyFunction
 
 # Define el tipo de los argumentos y el valor de retorno de la función
 def function_in_c():
-    func.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.c_int]
-    func.restype = ctypes.POINTER(ctypes.c_int)
+    # func.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.c_int]
+    # func.restype = ctypes.POINTER(ctypes.c_int)
+    func.argtypes = [ctypes.c_float]
+    func.restype = ctypes.c_int
     
 function_in_c()
 
+results = []
+
+def call_C_Function():
+    for value in values:
+        result = func(ctypes.c_float(value))    
+        results.append(result)
+
+call_C_Function()
+print(results)    
 # Crea un array de C de values float a partir de la lista de Python
-def get_values_c():
-    values_c = (ctypes.c_float * len(values))(*values)
-    return values_c
+# def get_values_c():
+#     values_c = (ctypes.c_float * len(values))(*values)
+#     return values_c
 
-# Llama a la función de c. new_values_c es un puntero a la memoria que fue asignada en la función CallAssemblyFunction del código de C para almacenar el nuevo array de ints.
-def get_new_values_c():
-    new_values_c = func(get_values_c(), len(values))
-    return new_values_c
+# # Llama a la función de c. new_values_c es un puntero a la memoria que fue asignada en la función CallAssemblyFunction del código de C para almacenar el nuevo array de ints.
+# def get_new_values_c():
+#     new_values_c = func(get_values_c(), len(values))
+#     return new_values_c
 
-# Convierte el resultado a una lista de Python(un objeto python)
-def get_values_po():
-    values_po = get_new_values_c()[:len(values)]
-    return values_po
+# # Convierte el resultado a una lista de Python(un objeto python)
+# def get_values_po():
+#     values_po = get_new_values_c()[:len(values)]
+#     return values_po
+
+
+
+
+
+
+
+
+
 
 # Empareja el orden de los years y los values
-years, valores_po = zip(*sorted(zip(years, get_values_po())))
+#years, valores_po = zip(*sorted(zip(years, get_values_po())))
+years, valores_po = zip(*sorted(zip(years, results)))
 
 # Crea una lista de índices para el eje y
 #indices = list(range(len(valores_po)))
@@ -88,7 +115,7 @@ fig = plt.figure(figsize=(10, 5), facecolor = 'grey')
 ax = fig.add_axes([0.1, 0.2, 0.8, 0.7])
 ax.set_facecolor('white')
 ax.grid(True)
-ax.plot(years, get_values_po(), color = 'lightblue', linewidth = 2, linestyle = '-.')
+ax.plot(years, results, color = 'lightblue', linewidth = 2, linestyle = '-.')
 ax.set_title("Cambio de values de GINI - Argentina")
 ax.set_ylim(20, 60)
 
@@ -119,5 +146,5 @@ btn.on_clicked(on_button_clicked)
 # Muestra el gráfico
 plt.show()
 
-# Libera memoria. llama a funcion de programa en c.
-get_c_library().free_memory(get_new_values_c()) 
+# # Libera memoria. llama a funcion de programa en c.
+# get_c_library().free_memory(get_new_values_c()) 
