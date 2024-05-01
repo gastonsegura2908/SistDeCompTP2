@@ -1,7 +1,7 @@
 section .text
-    global gini_manipulation_asm   
+    global ChangesArray   
 
-gini_manipulation_asm:
+ChangesArray:
     ; Start 
     push ebp                        
     mov ebp, esp                    

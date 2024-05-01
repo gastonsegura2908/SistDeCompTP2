@@ -50,8 +50,8 @@ print(years)
 def get_c_library():
     #clibrary = ctypes.CDLL("/home/federica/Documents/Sistemas_de_Computacion/practico_2/SistDeCompTP2/ctypes/clibrary.so")
     #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/clibrary.so")
-    clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/newclibrary_c.so")
-    #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/libgini.so")
+    #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/newclibrary_c.so")
+    clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/libgini.so")
     return clibrary
 
 # Asigna nombre a la funcion de C utilizada
