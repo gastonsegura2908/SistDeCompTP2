@@ -1,12 +1,12 @@
 import requests
 import ctypes
-import matplotlib
+#import matplotlib
 #import _tkinter
 #matplotlib.use('TkAgg')
 #matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
-from matplotlib.widgets import Button
+#from matplotlib.widgets import Button
 
 # URL de la api
 api_url = "https://api.worldbank.org/v2/en/country/all/indicator/SI.POV.GINI?format=json&date=2011:2020&per_page=32500&page=1&country=%22Argentina%22"
@@ -48,10 +48,11 @@ print(years)
 
 # Crea una biblioteca de objetos, Dynamic Link Library(DLL), y la retorna
 def get_c_library():
+    clibrary = ctypes.CDLL("/home/federica/Documents/Sistemas_de_Computacion/practico_2/SistDeCompTP2/libgini.so")
     #clibrary = ctypes.CDLL("/home/federica/Documents/Sistemas_de_Computacion/practico_2/SistDeCompTP2/ctypes/clibrary.so")
     #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/clibrary.so")
     #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/ctypes/newclibrary_c.so")
-    clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/libgini.so")
+    #clibrary = ctypes.CDLL("/home/gaston/Documentos/SdC_Proyectos/SistDeCompTP2/libgini.so")
     return clibrary
 
 # Asigna nombre a la funcion de C utilizada
@@ -103,48 +104,48 @@ print(results)
 
 # Empareja el orden de los years y los values
 #years, valores_po = zip(*sorted(zip(years, get_values_po())))
-years, valores_po = zip(*sorted(zip(years, results)))
+#years, valores_po = zip(*sorted(zip(years, results)))
 
 # Crea una lista de índices para el eje y
 #indices = list(range(len(valores_po)))
 
 # Crea una figura con un fondo gris
-fig = plt.figure(figsize=(10, 5), facecolor = 'grey')
+#fig = plt.figure(figsize=(10, 5), facecolor = 'grey')
 
 # Crea el gráfico y lo agrega a la figura
-ax = fig.add_axes([0.1, 0.2, 0.8, 0.7])
-ax.set_facecolor('white')
-ax.grid(True)
-ax.plot(years, results, color = 'lightblue', linewidth = 2, linestyle = '-.')
-ax.set_title("Cambio de values de GINI - Argentina")
-ax.set_ylim(20, 60)
+#ax = fig.add_axes([0.1, 0.2, 0.8, 0.7])
+#ax.set_facecolor('white')
+#ax.grid(True)
+#ax.plot(years, results, color = 'lightblue', linewidth = 2, linestyle = '-.')
+#ax.set_title("Cambio de values de GINI - Argentina")
+#ax.set_ylim(20, 60)
 
 # Etiqueta los ejes
-ax.set_xlabel("Año")
-ax.set_ylabel("Valor de GINI")
+#ax.set_xlabel("Año")
+#ax.set_ylabel("Valor de GINI")
 
 # Ajusta los margenes del grafico
 #plt.subplots_adjust(bottom=0.2, right=0.85)
 
 # Calcula la posición del borde izquierdo del botón para centrarlo
-def button_position():
-    button_left = 0.5 - 0.2 / 2  # 0.5 (mitad de la figura) - 0.2 / 2 (mitad del ancho del botón)
-    return button_left
+#def button_position():
+#    button_left = 0.5 - 0.2 / 2  # 0.5 (mitad de la figura) - 0.2 / 2 (mitad del ancho del botón)
+#    return button_left
 
 # Crea el botón y lo agrega a la figura
-button = fig.add_axes([button_position(), 0.05, 0.2, 0.075])  # Posición y tamaño del botón
-btn = Button(button, 'Guardar imagen', color = 'lightblue')
+#button = fig.add_axes([button_position(), 0.05, 0.2, 0.075])  # Posición y tamaño del botón
+#btn = Button(button, 'Guardar imagen', color = 'lightblue')
 
 # Función que se ejecutará cuando se presione el botón
-def on_button_clicked(event):
-    plt.savefig("Cambio_de_valores_de_GIN_Argentina.png")
-    print('Imagen guardada!')
+#def on_button_clicked(event):
+#    plt.savefig("Cambio_de_valores_de_GIN_Argentina.png")
+#    print('Imagen guardada!')
 
 # Conecta la función al evento del botón
-btn.on_clicked(on_button_clicked)
+#btn.on_clicked(on_button_clicked)
 
 # Muestra el gráfico
-plt.show()
+#plt.show()
 
 # # Libera memoria. llama a funcion de programa en c.
 # get_c_library().free_memory(get_new_values_c()) 
