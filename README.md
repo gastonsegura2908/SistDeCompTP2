@@ -46,6 +46,8 @@ Esto genera en pantalla, utilizando Python como interfaz, una gráfica de los va
 
 Los puntos representados en la gráfica (de color celeste, por la bandera de Argentina), se procesan como se ve en la primera imagen de la terminal. Se transforman de float a integer y se incrementan en uno. Luego se reorganizan por año, para que al representarlos en la gráfica, sean cronológicos.
 
+Como añadidido, la interfaz grafica posee un boton mediante el cual, al presionarlo, se puede almacenar el grafico obtenido. El mismo se guarda en la raiz del proyecto.
+![grafico almacenado](https://)  
 
 ```
 #include <stdio.h>
@@ -78,6 +80,17 @@ Este código C define dos funciones:
 1. `ChangesArray(float *arr,int size)`: Esta función toma un arreglo de números en punto flotante y su tamaño. Convierte cada número del arreglo a un entero y le suma uno. Devuelve el nuevo arreglo de enteros.
 2. `free_memory(int *arr)`: Esta función libera la memoria que fue previamente reservada para un arreglo de enteros.
 
+TESTS:  
+Se realizan utilizando pytest, el cual es un marco de pruebas que permite a los usuarios escribir códigos de prueba utilizando el lenguaje de programación Python. Se coloca `python -m pytest` en la terminal, para ejecutar el codigo que se encuentra en el programa llamado test_MainProcess.py. En el mismo se realizan 4 pruebas:
+
+1. `test_value_get()`: testea si se pudieron obtener correctamente los datos provenientes de la api,utilizando el comando request. Si efectivamente devuelve 200 es porque la solicitud se completo con exito.
+2. `test_get_country()`: testea si se ingreso correctamente Argentina como pais para obtener los datos del indice GINI.
+3. `test_button_position()`: testea si efectivamente la posicion que se calcula del boton es un numero mayor a 0.
+4. `test_pre_post_c_function()`: testea si la lista que contiene los valores de los indices GINI tiene un tamaño mayor a 0.
+  
+Al ejecutar el comando `python -m pytest` :  
+![tests](https://)  
+Se puede observar que los cuatro tests han pasado con exito.
 
 ### Segunda iteración
 
