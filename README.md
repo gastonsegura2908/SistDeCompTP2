@@ -95,7 +95,6 @@ Se realizan utilizando pytest, el cual es un marco de pruebas que permite a los 
   
 Al ejecutar el comando `python -m pytest` :  
 ![Test.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/954db504-9126-4449-802a-91af5c5e7328)
-Test.
 
 Se puede observar que los cuatro tests han pasado con exito.
 
