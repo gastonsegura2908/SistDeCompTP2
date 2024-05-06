@@ -28,7 +28,7 @@ Para este desarrollo utilizamos las bibliotecas .so, también conocidas como bib
 
 Para la primer iteración del trabajo, se observa en terminal:
 
-![Salida por terminal de la primer iteración.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/26dabf06-f34e-444d-a753-67dd00f1eeef)
+![Salida por terminal de la primer iteración.](/img/1-codigo-primera-iteracion.jpg)
 Salida por terminal de la primer iteración.
 
 El comando `gcc -shared -o clibrary.so clibrary.c` es usado para compilar un archivo de código en C (`clibrary.c`) en una biblioteca compartida (`clibrary.so`).
@@ -40,13 +40,13 @@ El comando `gcc -shared -o clibrary.so clibrary.c` es usado para compilar un arc
 
 Esto genera en pantalla, utilizando Python como interfaz, una gráfica de los valores GINI de la API que pertenecen al archivo JSON, con la palabra clave "Argentina".
 
-![Interfaz grafica para la primer iteración.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/90139278-80ba-42c6-bf17-eb2960cb17f3)
+![Interfaz grafica para la primer iteración.](/img/2-grafico-python.jpg)
 Interfaz grafica para la primer iteración.
 
 Los puntos representados en la gráfica (de color celeste, por la bandera de Argentina), se procesan como se ve en la primera imagen de la terminal. Se transforman de float a integer y se incrementan en uno. Luego se reorganizan por año, para que al representarlos en la gráfica, sean cronológicos.
 
 Como añadidido, la interfaz grafica posee un boton que, al presionarlo, permite almacenar el grafico obtenido. El mismo se guarda en la raiz del proyecto.
-![Grafico almacenado.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/07d553d8-5219-4e12-9f9f-ef6e15f1b858)
+![Grafico almacenado.](/img/3-grafico-python-guardado.jpg)
 Grafico almacenado.
 
 
@@ -94,7 +94,7 @@ Se realizan utilizando pytest, el cual es un marco de pruebas que permite a los 
 4. `test_pre_post_c_function()`: testea si la lista que contiene los valores de los indices GINI tiene un tamaño mayor a 0.
   
 Al ejecutar el comando `python -m pytest` :  
-![Test.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/954db504-9126-4449-802a-91af5c5e7328)
+![Test.](/img/4-test.jpg)
 
 Se puede observar que los cuatro tests han pasado con exito.
 
@@ -102,7 +102,7 @@ Se puede observar que los cuatro tests han pasado con exito.
 ### Segunda iteración
 
 Para la segunda iteración del trabajo, se observa en terminal:
-![Comandos para la segunda iteración por terminal.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/d69c9e65-47bf-4a62-8da9-2d7462884248)
+![Comandos para la segunda iteración por terminal.](/img/5-codigo-segunda-iteracion.jpg)
 
 Estos comandos en la terminal realizan las siguientes acciones:
 
@@ -111,11 +111,11 @@ Estos comandos en la terminal realizan las siguientes acciones:
 - `gcc -m32 -shared -o libgini.so ./assembler/assemblycode_asm.o ./ctypes/nreclibrary_c.o`: Enlaza los archivos de objeto `assemblycode_asm.o` y `newclibrary_c.o` en una biblioteca compartida `libgini.so` utilizando las opciones especificadas: `m32` para generar código para una arquitectura de 32 bits y `shared` para crear una biblioteca compartida.
 
 Para activar el entorno virtual de Python, utilizando los siguientes comandos:
-![Comandos para activar el entorno virtual de Python 32b en terminal.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/de08e997-ee36-4645-99ad-e31013bb0386)
+![Comandos para activar el entorno virtual de Python 32b en terminal.](/img/6-conda-activate-matplotlib.jpg)
 
 Por problemas no resueltos con el módulo 'matplotlib', se continúa con la segunda iteración sin usar este módulo. Además, no es necesario el uso de la interfaz gráfica. Centrándonos solo en el desarrollo y depuración en gdb.
 Realizando las modificaciones en el código, para lograr este avance, obtenemos en terminal:
-![Comandos exitosos de activación del entorno virtual de Python 32b en terminal.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/7662cbb1-fdd2-49a4-bdb3-47816ef17c54)
+![Comandos exitosos de activación del entorno virtual de Python 32b en terminal.](/img/7-conda-activate.jpg)
 
 
 ```C
@@ -178,7 +178,7 @@ Este es un código en lenguaje ensamblador que define una función llamada `Cha
 
 
 Para poder depurar el codigo, se agrega una parte de _debug_ para hacer un simple seguimiento sobre el _stackframe_. 
-![Agregado de debugeo.](https://github.com/FedericaMayorga01/SistDeCompTP2/assets/131220584/77a3c416-d297-4b1f-89e7-185a22d8ba01)
+![Agregado de debugeo.](/img/8-gdb-debug.jpg)
 Agregado de debugeo.
 
 Este es su resultado por terminal de la depuración con gdb:
